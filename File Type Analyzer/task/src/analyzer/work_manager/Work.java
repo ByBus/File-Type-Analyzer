@@ -1,31 +1,31 @@
 package analyzer.work_manager;
 
+import analyzer.FileType;
+
 import java.io.File;
+import java.util.List;
 
 public class Work {
 
     private final File file;
-    private final String pattern;
-    private final String correctFileMessage;
+    private final List<FileType> fileTypes;
 
-
-    public Work(File file, String pattern, String correctFileMessage) {
+    public Work(File file, List<FileType> fileTypes) {
         this.file = file;
-        this.pattern = pattern;
-        this.correctFileMessage = correctFileMessage;
+        this.fileTypes = fileTypes;
     }
 
-    public Result getResult(boolean isCorrect) {
+    public Result getResult(FileType fileType) {
         String unknownFileMessage = "Unknown file type";
-        return new Result(file, isCorrect ? correctFileMessage : unknownFileMessage);
+        return new Result(file, fileType != null ? fileType.getDescription() : unknownFileMessage);
     }
 
     public File getFile() {
         return file;
     }
 
-    public String getPattern() {
-        return pattern;
+    public List<FileType> getFileTypes() {
+        return fileTypes;
     }
 
     public static class Result {
