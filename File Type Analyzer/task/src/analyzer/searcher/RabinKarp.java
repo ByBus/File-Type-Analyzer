@@ -16,10 +16,10 @@ public class RabinKarp implements Searcher{
         int pLen = pattern.length;
         int tHash = 0; // text substring Hash
         int pHash = 0; // pattern Hash
-        //int POWER_LAST_CHAR = (int) Math.pow(X, pLen - 1);
-        int POWER_LAST_CHAR = 1;
-        for (int i = 0; i < pLen - 1; i++)
-            POWER_LAST_CHAR = (POWER_LAST_CHAR * CONST) % PRIME;
+        int powerLastChar = 1;
+        for (int i = 0; i < pLen - 1; i++) {
+            powerLastChar = (powerLastChar * CONST) % PRIME;
+        }
         //Calculate initial hashes
         for (int m = 0; m < pLen; m++) {
             pHash = (CONST * pHash + pattern[m]) % PRIME; //sum(c[0]*CONST^4..c[4]*CONST^0) - exponent grows RTL
@@ -41,7 +41,7 @@ public class RabinKarp implements Searcher{
             }
             // rollHash
             if (i < tLen - pLen) {
-                tHash = ((tHash - text[i] * POWER_LAST_CHAR) * CONST + text[i + pLen]) ;
+                tHash = ((tHash - text[i] * powerLastChar) * CONST + text[i + pLen]) ;
                 tHash = Math.floorMod(tHash, PRIME);
             }
         }
