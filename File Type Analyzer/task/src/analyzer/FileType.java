@@ -24,4 +24,8 @@ public class FileType implements Comparable<FileType> {
         return fileDescription;
     }
 
+    @Override
+    public String toString() {
+        return fileDescription + " " + pattern;
+    }
 }

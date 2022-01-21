@@ -15,6 +15,7 @@ public class Work {
         this.fileTypes = fileTypes;
     }
 
+
     public Result getResult(FileType fileType) {
         String unknownFileMessage = "Unknown file type";
         return new Result(file, fileType != null ? fileType.getDescription() : unknownFileMessage);

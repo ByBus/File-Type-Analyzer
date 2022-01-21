@@ -37,6 +37,8 @@ public class ExecutionManager {
 
         } catch (InterruptedException e) {
             return Collections.emptyList();
+        } finally {
+            executor.shutdown();
         }
     }
 
